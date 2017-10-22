@@ -20,6 +20,9 @@ const char* influxDatabase = "templogger";
 const short dhtPin = 0; // Wemos pin D3 (10K pull-up)
 const short dhtType = 21;
 
+// Sensor location
+const char* sensorLocation = "bedroom";
+
 // InfluxDB client object
 Influxdb influxdb(influxHost, 80);
 
@@ -66,7 +69,7 @@ void loop() {
 
   // Create object to send to InfluxDB
   FIELD dataObj("dht_read");
-  dataObj.addTag("location", "bedroom");
+  dataObj.addTag("location", sensorLocation);
   dataObj.addField("t", t);
   dataObj.addField("h", h);
   dataObj.addField("hic", hic);
